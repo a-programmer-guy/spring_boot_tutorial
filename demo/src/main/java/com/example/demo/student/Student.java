@@ -1,8 +1,27 @@
 package com.example.demo.student;
 
 import java.time.LocalDate;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
+@Entity // Annotation for Hibernate - ORM used to save Java objects in the db
+@Table // Maps the table to the db, specify details of the table to persist in the db 
 public class Student {
+	@Id // Defines the primary key for the table
+	// Sequence generator used to add a sequence generator strategy for the table
+	@SequenceGenerator(
+			name = "student_sequence", // Generator name - referenced by classes to be the generator for PK values
+			sequenceName = "student_sequence", // the name for the db sequence object to obtain PK values
+			allocationSize = 1 // Amount to increment sequence numbers by
+			) 
+	@GeneratedValue(
+			strategy = GenerationType.SEQUENCE, // Tells persistence provider to assign PK value using db sequence
+			generator = "student_sequence") // Specify which sequence to use for the generator (one we created above)
+	
 	// Student class attributes
 	private Long id;
 	private String name;
