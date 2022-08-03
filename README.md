@@ -12,6 +12,9 @@ There will also be a data layer responsible for connecting to the database. Post
 will be used for the database management. 
 
 Postgres download link for Ubuntu: [Click Here](https://www.postgresql.org/download/linux/ubuntu/)
+
 Postgres JDBC driver download: [Click Here](https://jdbc.postgresql.org/download.html)
+
 Getting started with Postgres: [Click Here](https://www.w3resource.com/PostgreSQL/connect-to-postgresql-database.php)
+
 Connect Postgres with Eclipse IDE: [Click Here](https://www.youtube.com/watch?v=k9TmykUOE2I)
