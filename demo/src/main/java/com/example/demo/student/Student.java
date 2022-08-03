@@ -11,16 +11,30 @@ import javax.persistence.Table;
 @Entity // Annotation for Hibernate - ORM used to save Java objects in the db
 @Table // Maps the table to the db, specify details of the table to persist in the db 
 public class Student {
-	@Id // Defines the primary key for the table
-	// Sequence generator used to add a sequence generator strategy for the table
+	/*
+	 * @Id Defines the primary key for the table
+	 * 
+	 * @SequenceGenerator used to add a sequence generator strategy for the table
+	 *
+	 * name - generator name, referenced by classes to be the generator for PK
+	 * values sequenceName - the name for the db sequence object to obtain PK values
+	 * allocationSize - amount to increment sequence numbers by
+	 */	
+	@Id 
 	@SequenceGenerator(
-			name = "student_sequence", // Generator name - referenced by classes to be the generator for PK values
-			sequenceName = "student_sequence", // the name for the db sequence object to obtain PK values
-			allocationSize = 1 // Amount to increment sequence numbers by
-			) 
+			name = "student_sequence", 
+			sequenceName = "student_sequence", 
+			allocationSize = 1
+			)
+	/*
+	 * @GeneratedValue - provides for the specification of generation strategies for the values of primary keys
+	 * strategy - tells persistence provider to assign PK value using db sequence
+	 * generator - Specify which sequence to use for the generator
+	 */
 	@GeneratedValue(
-			strategy = GenerationType.SEQUENCE, // Tells persistence provider to assign PK value using db sequence
-			generator = "student_sequence") // Specify which sequence to use for the generator (one we created above)
+			strategy = GenerationType.SEQUENCE, 
+			generator = "student_sequence"
+			) 
 	
 	// Student class attributes
 	private Long id;
