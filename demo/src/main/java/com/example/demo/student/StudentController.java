@@ -15,7 +15,7 @@ public class StudentController {
 	private final StudentService studentService;
 	
 	// Constructor for StudentController with StudentService parameter
-	// Uses dependency injection
+	// Uses dependency injection to give this class its instance variables
 	@Autowired // Autowires(instantiates) and injects StudentService into the constructor
 	 public StudentController(StudentService studentService) {
 		this.studentService = studentService;
