@@ -1,12 +1,15 @@
 package com.example.demo.student;
 
 import java.time.LocalDate;
+import java.time.Period;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity // Annotation for Hibernate - ORM used to save Java objects in the db
 @Table // Maps the table to the db, specify details of the table to persist in the db 
@@ -41,35 +44,35 @@ public class Student {
 	private String name;
 	private String email;
 	private LocalDate dob;
+	/*
+	 * @Transient tells app this attribute doesn't need to be a column in the db. The
+	 * The age will be auto calculated for us.
+	 */
+	@Transient 
 	private Integer age;
 	
 	// Default constructor with no arguments
 	public Student() {
-
 	}
 	// Constructor without id argument for creating a new user - db will provide id
 	public Student(
 			String name, 
 			String email, 
-			LocalDate dob, 
-			Integer age) {
+			LocalDate dob) {
 		this.name = name;
 		this.email = email;
 		this.dob = dob;
-		this.age = age;
 	}
 	// Constructor with all attributes
 	public Student(
 			Long id, 
 			String name, 
 			String email, 
-			LocalDate dob, 
-			Integer age) {
+			LocalDate dob) {
 		this.id = id;
 		this.name = name;
 		this.email = email;
 		this.dob = dob;
-		this.age = age;
 	}
 	// Getters and setters
 	public Long getId() {
@@ -97,7 +100,8 @@ public class Student {
 		this.dob = dob;
 	}
 	public Integer getAge() {
-		return age;
+		// Calculate the students age
+		return Period.between(this.dob, LocalDate.now()).getYears();
 	}
 	public void setAge(Integer age) {
 		this.age = age;
