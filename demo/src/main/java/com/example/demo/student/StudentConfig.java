@@ -18,6 +18,7 @@ the beans implementing this interface, after app context is loaded. */
 
 @Configuration
 public class StudentConfig {
+	
 	@Bean
 	CommandLineRunner commandLineRunner(
 			StudentRepository repository){

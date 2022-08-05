@@ -1,5 +1,7 @@
 package com.example.demo.student;
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -14,5 +16,10 @@ update, delete and search operation on objects.
 @Repository 
 public interface StudentRepository
 	extends JpaRepository<Student, Long> {
-
+	
+	/*
+	 * @Query("SELECT s FROM student WHERE s.email = ?1") This is the JPQL way of retrieving a
+	 * student from the Student class using the email property
+	 */
+	Optional<Student> findStudentByEmail(String email);
 }
